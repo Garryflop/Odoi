@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://g8do4qrmxtuk"]
+
+[ext_resource type="FontFile" uid="uid://bd5mkd7yoj3hl" path="res://Assets/Fonts/neoletters.ttf" id="1_hbhrx"]
+[ext_resource type="Script" path="res://Scripts/final_credits.gd" id="1_jdmy6"]
+[ext_resource type="Shader" path="res://Resources/god_ray.gdshader" id="2_s8dfp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60s7o"]
+shader = ExtResource("2_s8dfp")
+shader_parameter/blend_mode = 1
+shader_parameter/angle = 30.0
+shader_parameter/position = 0.227
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 0.122
+shader_parameter/falloff = 0.436
+shader_parameter/edge_fade = 0.431
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 11.371
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/color = Color(1, 0.6, 1, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+
+[node name="Finals" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jdmy6")
+label = NodePath("Label2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_60s7o")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+offset_left = 235.0
+offset_top = 45.0
+offset_right = 397.0
+offset_bottom = 61.0
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.784356, 0.298782, 1, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("1_hbhrx")
+text = "Количество смертей"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.0
+offset_top = 15.0
+offset_right = 102.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_hbhrx")
+text = "Спасибо за прохождение!"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -234.0
+offset_top = -282.0
+offset_right = 234.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_hbhrx")
+text = "Авторы:
+
+Harryfloppa(Nurdaulet) - Team Leader, Programmer
+
+Alimger(Alimger) - Game Designer
+
+Sejieor(Danil) - 2D pixel artist,animator
+
+Bazilek(Artemi) - 2D pixel artist
+
+
+
+special thanks for the illustrations i_peacekeeper_i
+AITU GDC GameJam VII
+Godot 4.3 stable"
+horizontal_alignment = 1

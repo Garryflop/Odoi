@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bo4lsk3onwa0v"]
+
+[ext_resource type="Script" path="res://Scripts/bush.gd" id="1_k0oey"]
+[ext_resource type="Texture2D" uid="uid://q60pvvymt8h" path="res://Assets/Sprites/TileSet/TileSet.png" id="2_kx6so"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1e1cv"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yjx7c"]
+radius = 8.0
+
+[node name="Bush" type="StaticBody2D" groups=["Interact"]]
+script = ExtResource("1_k0oey")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kx6so")
+hframes = 8
+vframes = 8
+frame = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1e1cv")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/HitBox"]
+shape = SubResource("CircleShape2D_yjx7c")

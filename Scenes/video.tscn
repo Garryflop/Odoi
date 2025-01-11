@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwowndsa758u"]
+
+[ext_resource type="Script" path="res://Scripts/video.gd" id="1_p3wan"]
+[ext_resource type="FontFile" uid="uid://bd5mkd7yoj3hl" path="res://Assets/Fonts/neoletters.ttf" id="2_1qbtu"]
+
+[node name="Video" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p3wan")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Fullscreen" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Fullscreen"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1qbtu")
+text = "Полноэкранный режим:"
+
+[node name="Fullscreen_button" type="CheckButton" parent="VBoxContainer/Fullscreen"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="RTX" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/RTX"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1qbtu")
+text = "RTX:                "
+
+[node name="RTX_button" type="CheckButton" parent="VBoxContainer/RTX"]
+layout_mode = 2
+
+[connection signal="toggled" from="VBoxContainer/Fullscreen/Fullscreen_button" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/RTX/RTX_button" to="." method="_on_rtx_button_toggled"]

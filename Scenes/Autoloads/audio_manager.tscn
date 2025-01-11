@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://07gucineidlk"]
+
+[ext_resource type="Script" path="res://Assets/Autoloads/audio_manager.gd" id="1_npr1m"]
+[ext_resource type="AudioStream" uid="uid://c2suyvpcii1a0" path="res://Assets/SFX/Silent woods.mp3" id="2_4fvhr"]
+[ext_resource type="AudioStream" uid="uid://bdnycwsdhel7b" path="res://Assets/SFX/title.mp3" id="2_77edr"]
+[ext_resource type="AudioStream" uid="uid://dfynotlk1r08y" path="res://Assets/SFX/anx.mp3" id="4_lbusy"]
+
+[node name="AudioManager" type="Node" node_paths=PackedStringArray("Music", "Sfx")]
+script = ExtResource("1_npr1m")
+Music = NodePath("Music")
+Sfx = NodePath("SFX")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Music" type="Node" parent="."]
+
+[node name="MainMenu" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("2_77edr")
+bus = &"Music"
+parameters/looping = true
+
+[node name="Game" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("2_4fvhr")
+bus = &"Music"
+parameters/looping = true
+
+[node name="anx" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("4_lbusy")
+bus = &"Music"
+parameters/looping = true

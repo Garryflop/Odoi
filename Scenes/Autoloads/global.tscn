@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://3a24sh5devk3"]
+
+[ext_resource type="Script" path="res://Assets/Autoloads/global.gd" id="1_o7ue3"]
+[ext_resource type="PackedScene" uid="uid://bpg58vdyh0pc0" path="res://Scenes/transition.tscn" id="2_5g8fl"]
+
+[node name="Global" type="Node" node_paths=PackedStringArray("transition")]
+script = ExtResource("1_o7ue3")
+transition = NodePath("Transition")
+
+[node name="Transition" parent="." instance=ExtResource("2_5g8fl")]

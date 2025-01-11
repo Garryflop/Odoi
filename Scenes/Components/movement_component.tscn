@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://rglpuxkc4sa8"]
+
+[ext_resource type="Script" path="res://Scripts/movement_component.gd" id="1_ychku"]
+
+[node name="MovementComponent" type="Node" node_paths=PackedStringArray("dash_duration", "dash_effect", "dash_delay")]
+script = ExtResource("1_ychku")
+dash_duration = NodePath("DashDurationTImer")
+dash_effect = NodePath("DashEffectTimer")
+dash_delay = NodePath("CanDashTimer")
+
+[node name="DashDurationTImer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="DashEffectTimer" type="Timer" parent="."]
+physics_interpolation_mode = 1
+wait_time = 0.05
+
+[node name="CanDashTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="DashDurationTImer" to="." method="_on_dash_duration_timer_timeout"]
+[connection signal="timeout" from="DashEffectTimer" to="." method="_on_dash_effect_timer_timeout"]
+[connection signal="timeout" from="CanDashTimer" to="." method="_on_can_dash_timer_timeout"]

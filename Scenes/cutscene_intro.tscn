@@ -1,0 +1,123 @@
+[gd_scene load_steps=11 format=3 uid="uid://2myef72x5ms3"]
+
+[ext_resource type="Script" path="res://Scripts/cutscene_intro.gd" id="1_knxn2"]
+[ext_resource type="Texture2D" uid="uid://dp27rmshb33v5" path="res://Assets/Sprites/Illustrations/1.jpeg" id="1_uvasn"]
+[ext_resource type="Texture2D" uid="uid://ta4dm416rxbc" path="res://Assets/Sprites/Illustrations/2.jpeg" id="2_ah0gi"]
+[ext_resource type="Texture2D" uid="uid://buqj4yaidps42" path="res://Assets/Sprites/Illustrations/3.jpg" id="3_ggtyn"]
+[ext_resource type="FontFile" uid="uid://bd5mkd7yoj3hl" path="res://Assets/Fonts/neoletters.ttf" id="3_p44ve"]
+
+[sub_resource type="Animation" id="Animation_nfyqh"]
+resource_name = "1"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.98023e-08),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_uvasn")]
+}
+
+[sub_resource type="Animation" id="Animation_e013c"]
+resource_name = "2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ah0gi")]
+}
+
+[sub_resource type="Animation" id="Animation_40tfo"]
+resource_name = "3"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_ggtyn")]
+}
+
+[sub_resource type="Animation" id="Animation_36wbf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_uvasn")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k05n7"]
+_data = {
+"1": SubResource("Animation_nfyqh"),
+"2": SubResource("Animation_e013c"),
+"3": SubResource("Animation_40tfo"),
+"RESET": SubResource("Animation_36wbf")
+}
+
+[node name="CUTSCENE_INTRO" type="CanvasLayer" node_paths=PackedStringArray("anim")]
+script = ExtResource("1_knxn2")
+anim = NodePath("AnimationPlayer")
+scene = "res://Scenes/Levels/level2.tscn"
+leng = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k05n7")
+}
+autoplay = "1"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture = ExtResource("1_uvasn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 552.0
+offset_top = 312.0
+offset_right = 624.0
+offset_bottom = 347.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_p44ve")
+text = "Press
+SPACE ->"

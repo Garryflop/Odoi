@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://pqw753uqt7pe"]
+
+[ext_resource type="Texture2D" uid="uid://dnf7pwrq1u1bo" path="res://Assets/Sprites/Player/bush.png" id="1_cj01q"]
+
+[node name="Coin" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_cj01q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

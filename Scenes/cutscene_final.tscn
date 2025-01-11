@@ -1,0 +1,175 @@
+[gd_scene load_steps=14 format=3 uid="uid://5qvc7n1jfe8s"]
+
+[ext_resource type="Script" path="res://Scripts/cutscene_final.gd" id="1_jk6xo"]
+[ext_resource type="Texture2D" uid="uid://c564e61swj386" path="res://Assets/Sprites/Finals/1.png" id="2_3vslb"]
+[ext_resource type="Texture2D" uid="uid://naruoydmw2hg" path="res://Assets/Sprites/Finals/3.png" id="3_s2cxk"]
+[ext_resource type="Texture2D" uid="uid://1rtj45xrhmhw" path="res://Assets/Sprites/Finals/5.png" id="4_diyax"]
+[ext_resource type="Texture2D" uid="uid://dg2ln6d4fe8kc" path="res://Assets/Sprites/Finals/2.png" id="4_tp357"]
+[ext_resource type="Texture2D" uid="uid://baud4jtckjge7" path="res://Assets/Sprites/Finals/4.png" id="5_kpc8p"]
+[ext_resource type="AudioStream" uid="uid://btakdnyq4gfyv" path="res://Assets/SFX/jump_sfx.mp3" id="6_hc3k1"]
+[ext_resource type="AudioStream" uid="uid://cskwj84qlwfma" path="res://Assets/SFX/hit_sfx.mp3" id="7_vtnnc"]
+[ext_resource type="AudioStream" uid="uid://cealtx2likjln" path="res://Assets/SFX/Katana Swing Cut.mp3" id="8_opvxf"]
+[ext_resource type="FontFile" uid="uid://bd5mkd7yoj3hl" path="res://Assets/Fonts/neoletters.ttf" id="10_0lear"]
+
+[sub_resource type="Animation" id="Animation_ss7un"]
+resource_name = "ANIMATION"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.46667, 3.06667, 4.4, 10.5333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_3vslb"), ExtResource("3_s2cxk"), ExtResource("4_diyax"), ExtResource("4_tp357"), ExtResource("5_kpc8p")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 1.5, 10.5, 11.5333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"jump_sound"
+}, {
+"args": [],
+"method": &"hit_sound"
+}, {
+"args": [],
+"method": &"hit2_sound"
+}, {
+"args": [],
+"method": &"end"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.53333, 8.76667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["", "Вы же гномы... ", ""]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label2:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5.53333, 7, 8.76667, 10.5333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["", "Мы, мы, мы убили короля и поняли,
+ что это выгодно, и-и... ", "Не убивай нас, мы дадим тебе много ДЕНЯ..", "
+"]
+}
+
+[sub_resource type="Animation" id="Animation_bpj3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_3vslb")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["
+"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label2:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bbnb3"]
+_data = {
+"ANIMATION": SubResource("Animation_ss7un"),
+"RESET": SubResource("Animation_bpj3l")
+}
+
+[node name="CUTSCENE_FINAL" type="CanvasLayer"]
+script = ExtResource("1_jk6xo")
+scene = "res://Scenes/final_credits.tscn"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882, 0.0313726, 0.192157, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bbnb3")
+}
+autoplay = "ANIMATION"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_3vslb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hc3k1")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vtnnc")
+
+[node name="Hit2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_opvxf")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 486.0
+offset_top = 265.0
+offset_right = 621.0
+offset_bottom = 288.0
+theme_override_fonts/font = ExtResource("10_0lear")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 151.0
+offset_top = 191.0
+offset_right = 673.0
+offset_bottom = 226.0
+theme_override_colors/font_color = Color(0.82881, 2.71939e-06, 5.77569e-07, 1)
+theme_override_fonts/font = ExtResource("10_0lear")

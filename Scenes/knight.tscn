@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq1x0wa6r3k8x"]
+
+[ext_resource type="Texture2D" uid="uid://dnf7pwrq1u1bo" path="res://Assets/Sprites/Player/bush.png" id="1_4w4dd"]
+[ext_resource type="Script" path="res://Scripts/knight.gd" id="1_jxrx6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5st0r"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dvipj"]
+radius = 120.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hqe6"]
+radius = 160.0
+height = 432.0
+
+[node name="Knight" type="Area2D" node_paths=PackedStringArray("zone", "indicator")]
+monitoring = false
+script = ExtResource("1_jxrx6")
+zone = NodePath("Zone")
+indicator = NodePath("Indicator")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.639216, 1, 1)
+texture = ExtResource("1_4w4dd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(1, 0.639216, 1, 1)
+position = Vector2(0, -32)
+texture = ExtResource("1_4w4dd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_5st0r")
+
+[node name="Zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Zone"]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_dvipj")
+debug_color = Color(0.897919, 0.000188095, 0.770527, 0.42)
+
+[node name="FightMode" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FightMode"]
+position = Vector2(0, -16)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2hqe6")
+debug_color = Color(0.153636, 0.584135, 0.746893, 0.42)
+
+[node name="Indicator" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -72.0
+offset_right = 16.0
+offset_bottom = -49.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(32, -8)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Zone" to="." method="_on_zone_body_entered"]
+[connection signal="body_exited" from="Zone" to="." method="_on_zone_body_exited"]
+[connection signal="body_entered" from="FightMode" to="." method="_on_fight_mode_body_entered"]
+[connection signal="body_exited" from="FightMode" to="." method="_on_fight_mode_body_exited"]
